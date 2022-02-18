@@ -115,6 +115,17 @@ class Contact{
 try{
     let contact1 = new Contact("Shubhangi","Topale","pune","pune","maharashtra","123456","9096067475","sbt@gmail.com");
     console.log(contact1.toString());
+    let contact2 = new Contact("Shivani","Amilkanthwar","nanded","nanded","Maharashtra","124565","1234567890","shivani@gmail.com");
+    console.log(contact2.toString());
+
+    let contact3 = new Contact("Krish","Amilkanthwar","nanded","nanded","Maharashtra","122145","1010101010","krish@gmail.com");
+    console.log(contact3.toString());
+
+    var addressBookArr = new Array();
+    addressBookArr.push(contact1);
+    addressBookArr.push(contact2);
+    addressBookArr.push(contact3);
 } catch(e) {
     console.log(e);
 }
+console.log(addressBookArr);
