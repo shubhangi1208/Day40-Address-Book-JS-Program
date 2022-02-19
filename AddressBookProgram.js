@@ -117,6 +117,10 @@ var addressBookArr = new Array();
 function addNewContact() {
     console.log("Enter the First Name :");
     let firstName = prompt();
+    if([...addressBookArr].filter(contact=>contact._firstName==firstName).reduce((present,firstName)=>present+=1,0))
+    {
+        console.log("Name is Already Available")
+    } else {
     console.log("Enter the Last Name :");
     let lastName = prompt();
     console.log("Enter the Address :");
@@ -133,6 +137,7 @@ function addNewContact() {
     let email = prompt();
     let contact = new Contact(firstName,lastName,address,city,state,zip,phoneno,email);
     addressBookArr.push(contact);
+    }
 }
 
 function editContact() {
