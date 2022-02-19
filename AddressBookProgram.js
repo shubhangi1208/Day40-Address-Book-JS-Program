@@ -175,50 +175,6 @@ function deleteContact(){
 function countContacts(){
     return [...addressBookArr].map(contact => contact._firstName).reduce((start,firstName)=>start+=1,0);
 }
-
-function addressBook() {
-    do{
-        console.log("1. Add New Contacts");
-        console.log("2. Edit Contacts");
-        console.log("3. Delete Contacts");
-        console.log("4. Display Contacts");
-        console.log("5. Display Contacts Count")
-        console.log("6. Search Person through City or State");
-        console.log("7. Count By City or State");
-        console.log("8. Sort Contact Alphabatically by Name")
-        console.log("9. Quit");
-        var choice = Number(prompt());
-        switch(choice) {
-            case 1:
-                addNewContact();
-                break;
-            case 2:
-                editContact();
-                break;
-            case 3:
-                deleteContact();
-                break;
-            case 4:
-                console.log(addressBookArr);
-                break;
-            case 5:
-                console.log("Total Contacts are :"+countContacts());
-                break;
-            case 6:
-                  searchPersonthroughCityorstate();
-                break;   
-            case 7:
-                countByCityState();
-                break;  
-            case 8:
-                sortAlphabeticallyByName();
-                break;  
-            case 9:
-            console.log("Thank You");   
-                break;
-        }
-    }while(choice!=5);
-}
 function searchPersonthroughCityorstate() {
     console.log("Search through  1. City 2. State :");
     let num = Number(prompt());
@@ -253,9 +209,92 @@ function sortAlphabeticallyByName(){
     });
     console.log([...addressBookArr]);
 }
-
-
-
+function sortByCityStateZip(choicenumber){
+    if(choicenumber == 1) {
+        addressBookArr.sort(function (a, b) {
+            if (a._city > b._city) {
+                return 1;
+            }
+            if (b._city > a._city) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    if(choicenumber == 2) {
+        addressBookArr.sort(function (a, b) {
+            if (a._state > b._state) {
+                return 1;
+            }
+            if (b._state > a._state) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    if(choicenumber == 3) {
+        addressBookArr.sort(function (a, b) {
+            if (a._zip > b._zip) {
+                return 1;
+            }
+            if (b._zip > a._zip) {
+                return -1;
+            }
+            return 0;
+        });
+    }
+    console.log([...addressBookArr]);
+}
+function addressBook() {
+    do{
+        console.log("1. Add New Contacts");
+        console.log("2. Edit Contacts");
+        console.log("3. Delete Contacts");
+        console.log("4. Display Contacts");
+        console.log("5. Display Contacts Count")
+        console.log("6. Search Person through City or State");
+        console.log("7. Count By City or State");
+        console.log("8. Sort Contact Alphabatically by Name")
+        console.log("9. Sort Contact Through City,State,Zip.");
+        console.log("10. Quit");
+        var choice = Number(prompt());
+        switch(choice) {
+            case 1:
+                addNewContact();
+                break;
+            case 2:
+                editContact();
+                break;
+            case 3:
+                deleteContact();
+                break;
+            case 4:
+                console.log(addressBookArr);
+                break;
+            case 5:
+                console.log("Total Contacts are :"+countContacts());
+                break;
+            case 6:
+                  searchPersonthroughCityorstate();
+                break;   
+            case 7:
+                countByCityState();
+                break;  
+            case 8:
+                sortAlphabeticallyByName();
+                break;  
+            case 9:
+                console.log("Enter the Choice.");
+                console.log("1. City \t 2. State \t 3. Zip");
+                var choicenumber = Number(prompt());
+                sortByCityStateZip(choicenumber);
+                break;
+            case 10:
+            console.log("Thank You");   
+                break;
+        }
+    }while(choice!=10);
+}
 try{
     addressBook();
 } catch(e) {
