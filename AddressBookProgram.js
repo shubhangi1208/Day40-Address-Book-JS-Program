@@ -206,6 +206,9 @@ function addressBook() {
                 searchPersonthroughCityorstate();
                 break;   
             case 7:
+                countByCityState();
+                break;    
+            case 8:
             console.log("Thank You");   
                 break;
         }
@@ -223,6 +226,15 @@ function ssearchPersonthroughCityorstate() {
         let state = readline.question();
         console.log([...addressBookArr].filter(contact => contact._state == state).map(contact => contact));
     }
+}
+function countByCityState() {
+    let cityArr = new Array();
+    let stateArr = new Array();
+    [...addressBookArr].forEach(contact => cityArr[contact._city] ? cityArr[contact._city] += 1 : cityArr[contact._city] = 1);
+    [...addressBookArr].forEach(contact => stateArr[contact._state] ? stateArr[contact._state] += 1 : stateArr[contact._state] = 1);
+
+    console.log("City Counts :"+cityArr);
+    console.log("State Counts :"+stateArr);
 }
 
 
