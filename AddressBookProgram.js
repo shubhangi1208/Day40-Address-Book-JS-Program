@@ -112,21 +112,55 @@ class Contact{
             + " Email ="+ this.email;
     }
 }
-function contactDetails(contact) {
+var addressBookArr = new Array();
+
+function addressBook() {
+    do{
+        console.log("1. ADD NEW CONTACT");
+        console.log("2. EDIT CONTACT");
+        console.log("3. DELETE CONTACT");
+        console.log("4. DISPLAY CONTACTS");
+        console.log("5. QUIT");
+        var choice = Number(prompt());
+        switch(choice) {
+            case 1:
+                addNewContact();
+                break;
+            case 2:
+                editContact();
+                break;
+            case 3:
+                deleteContact();
+                break;
+            case 4:
+                console.log(addressBookArr);
+                break;
+            case 5:
+            console.log("Thank You");   
+                break;
+        }
+    }while(choice!=5);
+}
+
+function addNewContact() {
+    console.log("Enter the First Name :");
+    let firstName = prompt();
     console.log("Enter the Last Name :");
-    contact._lastName = prompt();
+    let lastName = prompt();
     console.log("Enter the Address :");
-    contact._address = prompt();
+    let address = prompt();
     console.log("Enter the City :");
-    contact._city = prompt();
+    let city = prompt();
     console.log("Enter the State :");
-    contact._state = prompt();
+    let state = prompt();
     console.log("Enter the Zip :");
-    contact._zip = prompt();
+    let zip = prompt();
     console.log("Enter the Phone No :");
-    contact._phoneno = prompt();
+    let phoneno = prompt();
     console.log("Enter the Email ID :");
-    contact._email = prompt();
+    let email = prompt();
+    let contact = new Contact(firstName,lastName,address,city,state,zip,phoneno,email);
+    addressBookArr.push(contact);
 }
 
 function editContact() {
@@ -134,30 +168,36 @@ function editContact() {
     let firstName = prompt();
     for(let contact of addressBookArr) {
         if(contact._firstName == firstName){
-            console.log("Contact with First Name Found.");
-            contactDetails(contact);
-        } 
+            console.log("Enter the Last Name :");
+            contact._lastName = prompt();
+            console.log("Enter the Address :");
+            contact._address = prompt();
+            console.log("Enter the City :");
+            contact._city = prompt();
+            console.log("Enter the State :");
+            contact._state = prompt();
+            console.log("Enter the Zip :");
+            contact._zip = prompt();
+            console.log("Enter the Phone Number :");
+            contact._phoneno = prompt();
+            console.log("Enter the Email ID :");
+            contact._email = prompt();        } 
+    }
+}
+
+function deleteContact(){
+    console.log("Enter the First Name :");
+    let firstName = prompt();
+    for(let contact of addressBookArr) {
+        if(contact._firstName == firstName){
+            addressBookArr.splice(contact,1);
+            console.log("Contact Deleted.")
+        }
     }
 }
 
 try{
-    let contact1 = new Contact("Shubhangi","Topale","pune","pune","maharashtra","123456","9096067475","sbt@gmail.com");
-   // console.log(contact1.toString());
-   
-   let contact2 = new Contact("Shivani","Amilkanthwar","nanded","nanded","Maharashtra","124565","1234567890","shivani@gmail.com");
-  //  console.log(contact2.toString());
-
-    let contact3 = new Contact("Krish","Amilkanthwar","nanded","nanded","Maharashtra","122145","1010101010","krish@gmail.com");
-   // console.log(contact3.toString());
-
-    var addressBookArr = new Array();
-    addressBookArr.push(contact1);
-    addressBookArr.push(contact2);
-    addressBookArr.push(contact3);
+    addressBook();
 } catch(e) {
     console.log(e);
 }
-console.log(addressBookArr);
-editContact();
-
-console.log(addressBookArr);
