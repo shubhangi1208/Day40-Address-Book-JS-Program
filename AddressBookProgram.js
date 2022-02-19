@@ -160,7 +160,6 @@ function editContact() {
             console.log("Enter the Email ID :");
             contact._email = prompt();        } 
     }
-    console.log("Contact Added Sucessfully.")
 }
 
 function deleteContact(){
@@ -184,7 +183,8 @@ function addressBook() {
         console.log("3. Delete Contacts");
         console.log("4. Display Contacts");
         console.log("5. Display Contacts Count")
-        console.log("6. Quit");
+        console.log("6. Search Person through City or State");
+        console.log("7. Quit");
         var choice = Number(prompt());
         switch(choice) {
             case 1:
@@ -203,10 +203,26 @@ function addressBook() {
                 console.log("Total Contacts are :"+countContacts());
                 break;
             case 6:
+                searchPersonthroughCityorstate();
+                break;   
+            case 7:
             console.log("Thank You");   
                 break;
         }
     }while(choice!=5);
+}
+function ssearchPersonthroughCityorstate() {
+    console.log("Select Search Parameter 1. City 2. State :");
+    let parameter = Number(prompt());
+    if(parameter == 1) {
+        console.log("Enter the City to Search Person :");
+        let city = readline.question();
+        console.log([...addressBookArr].filter(contact => contact._city == city).map(contact => contact));
+    } else {
+        console.log("Enter the State to Search Person :");
+        let state = readline.question();
+        console.log([...addressBookArr].filter(contact => contact._state == state).map(contact => contact));
+    }
 }
 
 
