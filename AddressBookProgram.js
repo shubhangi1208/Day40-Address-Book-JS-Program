@@ -184,7 +184,9 @@ function addressBook() {
         console.log("4. Display Contacts");
         console.log("5. Display Contacts Count")
         console.log("6. Search Person through City or State");
-        console.log("7. Quit");
+        console.log("7. Count By City or State");
+        console.log("8. Sort Contact Alphabatically by Name")
+        console.log("9. Quit");
         var choice = Number(prompt());
         switch(choice) {
             case 1:
@@ -203,27 +205,30 @@ function addressBook() {
                 console.log("Total Contacts are :"+countContacts());
                 break;
             case 6:
-                searchPersonthroughCityorstate();
+                  searchPersonthroughCityorstate();
                 break;   
             case 7:
                 countByCityState();
-                break;    
+                break;  
             case 8:
+                sortAlphabeticallyByName();
+                break;  
+            case 9:
             console.log("Thank You");   
                 break;
         }
     }while(choice!=5);
 }
-function ssearchPersonthroughCityorstate() {
-    console.log("Select Search Parameter 1. City 2. State :");
-    let parameter = Number(prompt());
-    if(parameter == 1) {
+function searchPersonthroughCityorstate() {
+    console.log("Search through  1. City 2. State :");
+    let num = Number(prompt());
+    if(num == 1) {
         console.log("Enter the City to Search Person :");
-        let city = readline.question();
+        let city = prompt();
         console.log([...addressBookArr].filter(contact => contact._city == city).map(contact => contact));
     } else {
         console.log("Enter the State to Search Person :");
-        let state = readline.question();
+        let state = prompt();
         console.log([...addressBookArr].filter(contact => contact._state == state).map(contact => contact));
     }
 }
@@ -236,6 +241,19 @@ function countByCityState() {
     console.log("City Counts :"+cityArr);
     console.log("State Counts :"+stateArr);
 }
+function sortAlphabeticallyByName(){
+    addressBookArr.sort(function (a, b) {
+        if (a._firstName > b._firstName) {
+            return 1;
+        }
+        if (b._firstName > a._firstName) {
+            return -1;
+        }
+        return 0;
+    });
+    console.log([...addressBookArr]);
+}
+
 
 
 try{
