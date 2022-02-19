@@ -80,7 +80,7 @@ class Contact{
     }
 
     set phoneno(phoneno) {
-        let Pattern = RegExp('^[0-9]{2}|\\s|[0-9]{10}$');
+        let Pattern = RegExp('^|[0-9]{10}$');
         if(Pattern.test(phoneno)) {
             this._phoneno = phoneno;
         } else throw 'Invalid Phone Number.';
@@ -113,34 +113,6 @@ class Contact{
     }
 }
 var addressBookArr = new Array();
-
-function addressBook() {
-    do{
-        console.log("1. ADD NEW CONTACT");
-        console.log("2. EDIT CONTACT");
-        console.log("3. DELETE CONTACT");
-        console.log("4. DISPLAY CONTACTS");
-        console.log("5. QUIT");
-        var choice = Number(prompt());
-        switch(choice) {
-            case 1:
-                addNewContact();
-                break;
-            case 2:
-                editContact();
-                break;
-            case 3:
-                deleteContact();
-                break;
-            case 4:
-                console.log(addressBookArr);
-                break;
-            case 5:
-            console.log("Thank You");   
-                break;
-        }
-    }while(choice!=5);
-}
 
 function addNewContact() {
     console.log("Enter the First Name :");
@@ -183,6 +155,7 @@ function editContact() {
             console.log("Enter the Email ID :");
             contact._email = prompt();        } 
     }
+    console.log("Contact Added Sucessfully.")
 }
 
 function deleteContact(){
@@ -195,6 +168,42 @@ function deleteContact(){
         }
     }
 }
+function countContacts(){
+    return [...addressBookArr].map(contact => contact._firstName).reduce((start,firstName)=>start+=1,0);
+}
+
+function addressBook() {
+    do{
+        console.log("1. Add New Contacts");
+        console.log("2. Edit Contacts");
+        console.log("3. Delete Contacts");
+        console.log("4. Display Contacts");
+        console.log("5. Display Contacts Count")
+        console.log("6. Quit");
+        var choice = Number(prompt());
+        switch(choice) {
+            case 1:
+                addNewContact();
+                break;
+            case 2:
+                editContact();
+                break;
+            case 3:
+                deleteContact();
+                break;
+            case 4:
+                console.log(addressBookArr);
+                break;
+            case 5:
+                console.log("Total Contacts are :"+countContacts());
+                break;
+            case 6:
+            console.log("Thank You");   
+                break;
+        }
+    }while(choice!=5);
+}
+
 
 try{
     addressBook();
